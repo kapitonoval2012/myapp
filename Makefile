@@ -5,7 +5,7 @@ BUILDTAGS=
 # Use the 0.0.0 tag for testing, it shouldn't clobber any release builds
 APP?=myapp
 CHARTS?=mycharts
-USERSPACE?=k8s-community
+USERSPACE?=kapitonoval2012
 RELEASE?=0.1.0
 PROJECT?=github.com/${USERSPACE}/${APP}
 HELM_REPO?=https://${USERSPACE}.github.io/${CHARTS}
@@ -56,10 +56,6 @@ deploy: push
 fmt:
 	@echo "+ $@"
 	@go list -f '{{if len .TestGoFiles}}"gofmt -s -l {{.Dir}}"{{end}}' $(shell go list ${PROJECT}/... | grep -v vendor) | xargs -L 1 sh -c
-
-lint:
-	@echo "+ $@"
-	@go list -f '{{if len .TestGoFiles}}"golint {{.Dir}}/..."{{end}}' $(shell go list ${PROJECT}/... | grep -v vendor) | xargs -L 1 sh -c
 
 vet:
 	@echo "+ $@"
